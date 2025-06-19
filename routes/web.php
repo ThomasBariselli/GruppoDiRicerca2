@@ -61,15 +61,14 @@ Route::post('/login', [SessionController::class , 'store']);
 Route::post('/logout', [SessionController::class , 'destroy']);
 
 Route::post('/language-switch', [LanguageController::class, 'languageSwitch'])->name('language.switch');
-Route::get('/admin-layout', function () {
-    return view('admin.layout');
-})->name('admin.layout');
 
 
 
 Route::get('/chisiamo',[MemberController::class,'index'])->name('chisiamo.index');
+
 Route::middleware(['auth','role:teacher'])->name('chisiamo.')->prefix('chisiamo')->group(function() {
     Route::resource('/',MemberController::class);
+    Route::get('/create',[MemberController::class,'create'])->name('create');
     Route::get('/{member}/edit',[MemberController::class,'edit'])->name('edit');
     Route::put('/{member}/edit',[MemberController::class,'update'])->name('update');
     Route::delete('/{member}',[MemberController::class,'destroy'])->name('destroy');

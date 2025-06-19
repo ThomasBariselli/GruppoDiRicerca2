@@ -1,50 +1,9 @@
-<x-layout style="display: table">
-    <x-slot:heading>
+@extends('layouts.admin')
+    <title>
         Admin Panel - Gruppo Di Ricerca
-    </x-slot:heading>
-    <style>
-        .nav-link.active-side{
-            color:black;
-            background-color:white;
-        }
-    </style>
-    
-    <div class="p-3 text-white bg-dark" style="width: 280px;display:table-cell;padding-top:15%">
-    <ul class="nav nav-pills flex-column mb-auto" style="padding-top:30%;">
-    <hr>
-      <li class="nav-item">
-        <a href="{{ route('admin.users.index') }}" class="nav-link text-white" aria-current="page">
-          Utenti
-        </a>
-        <a href="{{ route('admin.roles.index') }}" class="nav-link text-white" aria-current="page">
-          Ruoli
-        </a>
-      </li>
-      <li>
-        <a href="{{ route('admin.permissions.index') }}" class="nav-link active-side" style="margin-bottom:160%">
-          Permessi
-        </a>
-      </li>
-    </ul>
-    <hr>
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <strong>{{ auth()->user()->email }}</strong>
-      </a>
-      <a class="text-white text-decoration-none" style="padding-left:30%" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ auth()->user()->getRoleNames()->first() }}
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><hr class="dropdown-divider"></li>
-        <form method="POST" action="/logout" class="d-flex justify-content-center">
-          @csrf
-          <li><button type="submit" class="btn btn-secondary" style="background-color:#343a40;border:none">Sign out</button></li>
-        </form>
-      </ul>
-    </div>
-  </div>
+    </title>
 
-  <div class="container-fluid" style="display:table-cell;padding-top:5%;" >
+  <div class="container-fluid" style="padding-top:5%;padding-left:25%" >
         @if(Session::has('message'))
           <div class="alert alert-warning alert-dismissible fade show" role="alert"><!---->
             <strong>{{Session::get('message')}}</strong>
@@ -98,11 +57,10 @@
                         <p class="text-xs text-red-500 font-semibold mt-1 italic">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="container-fluid pb-5">
-                    <button type="submit" class="btn btn-success" style="float:right">Assign</button>
+                <div class="container-fluid pb-5 pl-5">
+                    <button type="submit" class="btn btn-success" style="float:right;">Assign</button>
                 </div>
             </form>
           </div>
         </div>
-    </div>
-</x-layout>
+  </div>
