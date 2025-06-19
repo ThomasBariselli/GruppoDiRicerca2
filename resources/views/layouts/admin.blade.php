@@ -69,7 +69,7 @@
             @endguest
             @auth
 
-                <form method="POST" action="/logout">
+                <form method="POST" class="m-1" action="/logout">
                 @csrf
                     <button type="submit" class="btn btn-light"><a class="bi bi-box-arrow-left text-dark text-decoration-none">&nbsp;Log out</a></button>
                 </form>

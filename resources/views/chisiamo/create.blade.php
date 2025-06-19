@@ -1,7 +1,8 @@
-<x-layout>
-    <x-slot:heading>
+@extends('layouts.app')
+    <title>
         Chi Siamo - Gruppo di Ricerca
-    </x-slot:heading>
+    </title>
+
   <div class="container-fluid d-flex pt-5" style="justify-content:center">
   <form method="POST" action="{{ route('chisiamo.store') }}" class="py-3" style="width:40%;">
             @csrf
@@ -34,4 +35,3 @@
             </div>
         </form>
   </div>
-</x-layout>

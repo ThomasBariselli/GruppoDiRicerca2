@@ -1,7 +1,8 @@
-<x-layout>
-    <x-slot:heading>
+@extends('layouts.app')
+    <title>
         Chi Siamo - Gruppo di Ricerca
-    </x-slot:heading>
+    </title>
+
   <div class="container-fluid" style="max-width: 800px;background-color: white;padding-top: 2%;padding-bottom: 2%;">
       <div class="container-fluid my-5 text-center" style="max-width: 550px;">
         
@@ -32,4 +33,3 @@
         </div>
       </div>
   </div>
-</x-layout>

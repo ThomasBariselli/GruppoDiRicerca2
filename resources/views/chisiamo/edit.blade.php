@@ -1,7 +1,8 @@
-<x-layout>
-    <x-slot:heading>
+@extends('layouts.app')
+    <title>
         Chi Siamo - Gruppo di Ricerca
-    </x-slot:heading>
+    </title>
+
     <div class="container-fluid d-flex mt-5" style="justify-content:center">
         <form method="POST" action="{{ route('chisiamo.update', $member->id) }}" class="py-3 mt-5 mb-5" style="width:40%;margin-left:14%">
             @csrf
@@ -68,4 +69,3 @@
           </form>
         </div>
       </div>
-</x-layout>

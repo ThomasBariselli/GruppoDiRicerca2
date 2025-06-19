@@ -1,7 +1,8 @@
-<x-layout>
-  <x-slot:heading>  
+@extends('layouts.app')
+  <title>  
     Corsi - Gruppo di Ricerca
-  </x-slot:heading>
+  </title>
+
   <div class="container-fluid d-flex mt-5" style="justify-content:center">
         <form method="POST" action="{{ route('corsi.update', $course->id) }}" class="py-3" style="width:40%;">
             @csrf
@@ -29,4 +30,3 @@
         </form>
         
       </div>
-</x-layout>

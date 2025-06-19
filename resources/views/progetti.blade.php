@@ -1,5 +1,4 @@
-<x-layout>
-    <x-slot:heading>
+@extends('layouts.app')
+    <title>
         Progetti - Gruppo di Ricerca
-    </x-slot:heading>
-</x-layout>
+    </title>
