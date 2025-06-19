@@ -1,10 +1,9 @@
 @extends('layouts.app')
-
     <title>
         Home - Gruppo di Ricerca
     </title>
 
-    <div style="background-image: url('nature.jpg');align-items: center;">
+    <div style="background-image: url('mondo.jpeg');align-items: center;">
         <div class="container-fluid my-5 text-center" style="max-width: 800px;background-color: white;">
           <div class="container-fluid text-center text-message" style="max-width: 600px;padding-top: 10%;padding-bottom: 9%;">
             <h2>

@@ -5,11 +5,13 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ResetSessionController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseGuestController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MemberGuestController;
 use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LanguageMiddleware;
@@ -63,10 +65,7 @@ Route::post('/logout', [SessionController::class , 'destroy']);
 Route::post('/language-switch', [LanguageController::class, 'languageSwitch'])->name('language.switch');
 
 
-
-Route::get('/chisiamo',[MemberController::class,'index'])->name('chisiamo.index');
-
-Route::middleware(['auth','role:teacher'])->name('chisiamo.')->prefix('chisiamo')->group(function() {
+Route::middleware(['auth','can:edit-member'])->name('chisiamo.')->prefix('chisiamo')->group(function() {
     Route::resource('/',MemberController::class);
     Route::get('/create',[MemberController::class,'create'])->name('create');
     Route::get('/{member}/edit',[MemberController::class,'edit'])->name('edit');
@@ -76,15 +75,19 @@ Route::middleware(['auth','role:teacher'])->name('chisiamo.')->prefix('chisiamo'
     Route::delete('/{member}/edit/{course}', [MemberController::class, 'revokeCourse'])->name('corsi.revoke');
 });
 
+Route::get('/chisiamo',[MemberGuestController::class,'index'])->name('chisiamo.index');
+Route::resource('/chisiamo',MemberGuestController::class);
 
-Route::get('/corsi',[CourseController::class,'index'])->name('corsi.index');
-Route::middleware(['auth','role:teacher'])->name('corsi.')->prefix('corsi')->group(function() {
+Route::middleware(['auth','can:edit-course'])->name('corsi.')->prefix('corsi')->group(function() {
     Route::resource('/',CourseController::class);
     Route::get('/{course}/edit',[CourseController::class,'edit'])->name('edit');
     Route::put('/{course}/edit',[CourseController::class,'update'])->name('update');
     Route::delete('/{course}',[CourseController::class,'destroy'])->name('destroy');
     
 });
+
+Route::get('/corsi',[CourseGuestController::class,'index'])->name('corsi.index');
+Route::resource('/corsi',CourseGuestController::class);
 
 
 
