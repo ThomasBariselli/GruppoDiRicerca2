@@ -11,6 +11,9 @@ class Course extends Model
 {
     use HasFactory;
 
+    public function members(){
+        return $this->belongsToMany(Member::class);
+    }
 
     protected $guarded = [];
 

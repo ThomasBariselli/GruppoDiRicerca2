@@ -2,7 +2,6 @@
     <title>
         Admin Panel - Gruppo Di Ricerca
     </title>
-    
   <div class="container-fluid" style="padding-top:5%;padding-left:25%" >
         
         <form class="py-3" style="padding-left:25%;width:60%">

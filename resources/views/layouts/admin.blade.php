@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="/icona.webp">
+    <link rel="icon" href="{{ asset('images/icona.webp') }}">
     @yield('header')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -54,7 +54,7 @@
             </li>
             @role('admin')
                 <li class="nav-item">
-                <a class="{{ request()->is('admin') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="{{ route('admin.users.index') }}">ADMIN</a>
+                <a class="{{ str_starts_with(Request::route()->getName(), 'admin') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="{{ route('admin.users.index') }}">ADMIN</a>
                 </li>
             @endrole
           </ul>
@@ -114,8 +114,7 @@
           {{ auth()->user()->getRoleNames()->first() }}
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <li><hr class="dropdown-divider"></li>
-          <form method="POST" action="/logout" class="d-flex justify-content-center">
+          <form method="POST" action="/logout" class="d-flex justify-content-center pt-3">
             @csrf
             <li><button type="submit" class="btn btn-secondary" style="background-color:#343a40;border:none">Sign out</button></li>
           </form>

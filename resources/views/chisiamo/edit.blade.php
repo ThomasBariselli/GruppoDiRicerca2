@@ -55,7 +55,7 @@
                   <label for="course" class="col-sm-2 col-form-label">Corsi</label>
                   <select data-mdb-select-init id="course" name="course" autocomplete="course-name" class="mt-1 block w-full py-2 px-3" style="border-radius: 5px;">
                     @foreach($courses as $course)
-                      <option value="{{ $course->name }}">{{ $course->name }}</option>
+                      <option value="{{ $course->id }}">{{ $course->name }}</option>
                     @endforeach
                   </select>
                   @error('course')

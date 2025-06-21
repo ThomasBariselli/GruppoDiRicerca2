@@ -34,6 +34,14 @@
               Dalla teoria alla pratica: sviluppiamo progetti che uniscono competenze scientifiche, tecniche e creative per affrontare le sfide del futuro.</p>
           </div>
         </div>
+        <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/corsi'">
+          <img src="corsi.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">CORSI</h5>
+            <p class="card-text">Soluzioni concrete per problemi reali.
+              Dalla teoria alla pratica: sviluppiamo progetti che uniscono competenze scientifiche, tecniche e creative per affrontare le sfide del futuro.</p>
+          </div>
+        </div>
         <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/pubblicazioni'">
           <img src="pubblicazioni.png" class="card-img-top" alt="...">
           <div class="card-body">

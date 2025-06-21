@@ -9,7 +9,10 @@
         <h2>IL NOSTRO TEAM<br></h2>
             <div class="container-fluid my-5" style="align-items:center">
             @can('edit-member')
-              <button type="button" class="btn btn-success" onclick="location.href='{{ route('chisiamo.create') }}'">Create Member</button>
+            <form method="POST"  action="{{ route('chisiamo.create') }}">
+                @csrf
+                <button type="submit" class="btn btn-success">Create Member</button>
+            </form>
             @endcan
             @foreach ($members as $member)
               <div class="card border-primary mb-3">

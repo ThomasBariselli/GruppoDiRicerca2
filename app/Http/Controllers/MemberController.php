@@ -42,15 +42,16 @@ class MemberController extends Controller
     }
     public function assignCourse(Request $request, Member $member){
 
-        /*if ($member->courses->contains($request->course->id)){
+        if ($member->courses->contains($request->course)){
             return back()->with('message','Course already assigned');
-        }*/
-        $member->courses()->attach($request->input('course_id'));
+        }
+
+        $member->courses()->attach($request->course);
         return back()->with('message','Course assigned');
     }
     public function revokeCourse(Member $member, Course $course){
 
-        if ($member->courses()->contains($course->id)){
+        if ($member->courses->contains($course->id)){
             $member->courses()->detach($course->id);
             return back()->with('message','Course removed');
         }

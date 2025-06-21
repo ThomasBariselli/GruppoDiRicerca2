@@ -67,7 +67,8 @@ Route::post('/language-switch', [LanguageController::class, 'languageSwitch'])->
 
 Route::middleware(['auth','can:edit-member'])->name('chisiamo.')->prefix('chisiamo')->group(function() {
     Route::resource('/',MemberController::class);
-    Route::get('/create',[MemberController::class,'create'])->name('create');
+    Route::post('/create',[MemberController::class,'create'])->name('create');
+    Route::post('/create/store',[MemberController::class,'store'])->name('store');
     Route::get('/{member}/edit',[MemberController::class,'edit'])->name('edit');
     Route::put('/{member}/edit',[MemberController::class,'update'])->name('update');
     Route::delete('/{member}',[MemberController::class,'destroy'])->name('destroy');
@@ -80,9 +81,13 @@ Route::resource('/chisiamo',MemberGuestController::class);
 
 Route::middleware(['auth','can:edit-course'])->name('corsi.')->prefix('corsi')->group(function() {
     Route::resource('/',CourseController::class);
+    Route::post('/create',[CourseController::class,'create'])->name('create');
+    Route::post('/create/store',[CourseController::class,'store'])->name('store');
     Route::get('/{course}/edit',[CourseController::class,'edit'])->name('edit');
     Route::put('/{course}/edit',[CourseController::class,'update'])->name('update');
     Route::delete('/{course}',[CourseController::class,'destroy'])->name('destroy');
+    Route::post('/{course}/edit', [CourseController::class, 'assignMember'])->name('chisiamo.assign');
+    Route::delete('/{course}/edit/{member}', [CourseController::class, 'revokeMember'])->name('chisiamo.revoke');
     
 });
 

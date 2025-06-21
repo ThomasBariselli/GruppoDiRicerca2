@@ -5,7 +5,7 @@
     </title>
     
   <div class="container-fluid text-center" style="padding-top:7%;padding-bottom:5%" >
-    <table align="center" class="table table-striped table-dark" style="width:70%;margin-left:23%">
+    <table align="center" class="table table-striped table-dark text-center" style="width:70%;margin-left:23%">
               <thead style="color:grey">
                 <tr>
                   <th scope="col" class="px-6 py-3 text-left text-sx font-medium text-gray-500 uppercase">NOME</th>

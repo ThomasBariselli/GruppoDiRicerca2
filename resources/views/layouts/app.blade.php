@@ -68,15 +68,22 @@
                 </li>
             @endguest
             @auth
-
-                <form method="POST" class="m-1" action="/logout">
-                @csrf
-                    <button type="submit" class="btn btn-light"><a class="bi bi-box-arrow-left text-dark text-decoration-none">&nbsp;Log out</a></button>
-                </form>
+                <div class="dropdown">
+                  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <strong>{{ auth()->user()->email }}</strong>
+                  </a>
+                  <a class="text-white text-decoration-none" style="padding-left:30%" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ auth()->user()->getRoleNames()->first() }}
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <form method="POST" action="/logout" class="d-flex justify-content-center pt-3">
+                      @csrf
+                      <li><button type="submit" class="btn btn-secondary" style="background-color:#343a40;border:none">Sign out</button></li>
+                    </form>
+                  </ul>
+                </div>
+                
             @endauth
-                <!--<div class="switch">
-                    @include('components.language-switch')
-                </div>-->
           </ul>
         </div>
     </div>

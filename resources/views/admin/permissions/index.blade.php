@@ -5,7 +5,7 @@
     
   <div class="container-fluid text-center" style="padding-top:6%;margin-bottom:15%">
     <button type="button" class="btn btn-success" style="margin-left:67%" onclick="location.href='{{ route('admin.permissions.create') }}'">Create Permission</button>
-    <table align="center" class="table table-striped table-dark mt-3" style="margin-right:5%;width:70%;">
+    <table align="center" class="table table-striped table-dark mt-3 text-center" style="margin-right:5%;width:70%;">
               <thead style="color:grey">
                 <tr>
                   <th scope="col" class="px-6 py-3 text-left text-sx font-medium text-gray-500 uppercase">NOME</th>

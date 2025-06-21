@@ -10,9 +10,11 @@ use App\Models\Course;
 
 class Member extends Model {
 
-    use HasFactory, HasRoles;
+    use HasFactory;
 
-
+    public function courses(){
+        return $this->belongsToMany(Course::class);
+    }
 
     protected $guarded = [];
 

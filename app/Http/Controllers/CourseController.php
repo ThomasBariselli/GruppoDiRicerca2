@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Member;
 
 class CourseController extends Controller
 {
@@ -23,7 +24,8 @@ class CourseController extends Controller
     }
 
     public function edit(Course $course){
-        return view('corsi.edit', compact('course'));
+        $members=Member::all();
+        return view('corsi.edit', compact('course','members'));
     }
     public function update(Request $request,Course $course){
 
@@ -37,5 +39,21 @@ class CourseController extends Controller
         $course->delete();
 
         return back()->with('message','Course destroyed');
+    }
+    public function assignMember(Request $request, Course $course){
+
+        if ($course->members->contains($request->member)){
+            return back()->with('message','Course already assigned');
+        }
+        $course->members()->attach($request->member);
+        return back()->with('message','Course assigned');
+    }
+    public function revokeMember(Course $course, Member $member){
+
+        if ($course->members->contains($member->id)){
+            $course->members()->detach($member->id);
+            return back()->with('message','Course removed');
+        }
+        return back()->with('message','Course not exists');
     }
 }
