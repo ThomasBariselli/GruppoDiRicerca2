@@ -9,7 +9,7 @@
         <h2 class="mb-5">IL NOSTRO TEAM<br></h2>
             <div class="container-fluid" style="align-items:center">
             @foreach ($members as $member)
-              @if($member->getRoleNames()->first()=='teacher' || $member->getRoleNames()->first()=='collab')
+              @if($member->getRoleNames()->first()=='teacher' || $member->getRoleNames()->first()=='collab' || $member->getRoleNames()->get(1)=='collab' || $member->getRoleNames()->get(1)=='teacher')
                 <div class="card border-primary mb-3">
                   <div class="card-body">
                     <h5 class="card-title">{{ $member->firstname }} {{ $member->lastname }}</h5>

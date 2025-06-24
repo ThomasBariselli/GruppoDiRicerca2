@@ -47,7 +47,9 @@
                   <label for="member" class="col-sm-2 col-form-label">Membri</label>
                   <select data-mdb-select-init id="member" name="member" autocomplete="course-name" class="mt-1 block w-full py-2 px-3" style="border-radius: 5px;">
                     @foreach($members as $member)
-                      <option value="{{ $member->id }}">{{ $member->firstname }}&nbsp;{{ $member->lastname }}</option>
+                      @if($member->getRoleNames()->first()=='teacher' || $member->getRoleNames()->first()=='collab' || $member->getRoleNames()->get(1)=='collab' || $member->getRoleNames()->get(1)=='teacher')  
+                        <option value="{{ $member->id }}">{{ $member->firstname }}&nbsp;{{ $member->lastname }}</option>
+                      @endif
                     @endforeach
                   </select>
                   @error('member')
