@@ -1,7 +1,8 @@
-<x-layout>
-    <x-slot:heading>
+@extends('layouts.app')
+    <title> 
         Reset password - Gruppo di Ricerca
-    </x-slot:heading>
+    </title>
+
     <div class="container-fluid" style="max-width: 800px;background-color: white; padding-top:10%;padding-bottom:2%">
         <h2 class="text-center">Reset password</h2>
         <form method="POST" action="/send" class="py-3" style="max-width:550px;padding-left:28%">
@@ -24,4 +25,3 @@
             </div>
         </form>
     </div>
-</x-layout>

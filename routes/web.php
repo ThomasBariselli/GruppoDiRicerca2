@@ -70,7 +70,7 @@ Route::middleware(['auth','can:edit-member'])->name('chisiamo.')->prefix('chisia
     Route::post('/create',[MemberController::class,'create'])->name('create');
     Route::post('/create/store',[MemberController::class,'store'])->name('store');
     Route::get('/{member}/edit',[MemberController::class,'edit'])->name('edit');
-    Route::put('/{member}/edit',[MemberController::class,'update'])->name('update');
+    Route::put('/{member}',[MemberController::class,'update'])->name('update');
     Route::delete('/{member}',[MemberController::class,'destroy'])->name('destroy');
     Route::post('/{member}/edit', [MemberController::class, 'assignCourse'])->name('corsi.assign');
     Route::delete('/{member}/edit/{course}', [MemberController::class, 'revokeCourse'])->name('corsi.revoke');
@@ -84,7 +84,7 @@ Route::middleware(['auth','can:edit-course'])->name('corsi.')->prefix('corsi')->
     Route::post('/create',[CourseController::class,'create'])->name('create');
     Route::post('/create/store',[CourseController::class,'store'])->name('store');
     Route::get('/{course}/edit',[CourseController::class,'edit'])->name('edit');
-    Route::put('/{course}/edit',[CourseController::class,'update'])->name('update');
+    Route::put('/{course}',[CourseController::class,'update'])->name('update');
     Route::delete('/{course}',[CourseController::class,'destroy'])->name('destroy');
     Route::post('/{course}/edit', [CourseController::class, 'assignMember'])->name('chisiamo.assign');
     Route::delete('/{course}/edit/{member}', [CourseController::class, 'revokeMember'])->name('chisiamo.revoke');

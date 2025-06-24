@@ -31,12 +31,12 @@
         <div class="container-fluid mt-5 mb-5" style="padding-left:25%;padding-top:2%">
           <h4>Course Members</h4>
           <div class="flex space-x-2 mt-4 pt-2">
-            @if($course->members)
-              @foreach($course->members as $course_members)
-                <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white" method="POST"  action="{{ route('corsi.chisiamo.revoke', [$course->id,$course_members->id]) }}" onsubmit="return confirm('Are you sure?');">
+            @if($course->users)
+              @foreach($course->users as $course_users)
+                <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white" method="POST"  action="{{ route('corsi.chisiamo.revoke', [$course->id,$course_users->id]) }}" onsubmit="return confirm('Are you sure?');">
                   @csrf
                   @method('DELETE')
-                  <button type="submit" class="btn btn-danger">{{ $course_members->name }}&nbsp;{{ $course_members->surname }}</button>
+                  <button type="submit" class="btn btn-danger">{{ $course_users->firstname }}&nbsp;{{ $course_users->lastname }}</button>
                 </form>
               @endforeach
             @endif
@@ -47,7 +47,7 @@
                   <label for="member" class="col-sm-2 col-form-label">Membri</label>
                   <select data-mdb-select-init id="member" name="member" autocomplete="course-name" class="mt-1 block w-full py-2 px-3" style="border-radius: 5px;">
                     @foreach($members as $member)
-                      <option value="{{ $member->id }}">{{ $member->name }}&nbsp;{{ $member->surname }}</option>
+                      <option value="{{ $member->id }}">{{ $member->firstname }}&nbsp;{{ $member->lastname }}</option>
                     @endforeach
                   </select>
                   @error('member')

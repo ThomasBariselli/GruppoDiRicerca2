@@ -106,12 +106,12 @@
         </li>
       </ul>
       <hr>
-      <div class="dropdown">
+      <div class="dropdown text-center">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
           <strong>{{ auth()->user()->email }}</strong>
         </a>
-        <a class="text-white text-decoration-none" style="padding-left:30%" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ auth()->user()->getRoleNames()->first() }}
+        <a class="text-white text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ auth()->user()->getRoleNames() }}
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
           <form method="POST" action="/logout" class="d-flex justify-content-center pt-3">

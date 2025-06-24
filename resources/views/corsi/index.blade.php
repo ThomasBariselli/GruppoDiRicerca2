@@ -7,10 +7,11 @@
       <div class="container-fluid my-5 text-center" style="max-width: 550px;">
         
         <h2>I NOSTRI CORSI<br></h2>
-            <div class="container-fluid my-5" style="align-items:center">
+            <div class="container-fluid" style="align-items:center">
             @can('edit-course')
-            <form method="POST"  action="{{ route('corsi.create') }}">
-              <button type="submit" class="btn btn-success" onclick="location.href='{{ route('corsi.create') }}'">Create Course</button>
+            <form method="POST" class="mt-4 mb-4" action="{{ route('corsi.create') }}">
+              @csrf
+              <button type="submit" class="btn btn-success">Create Course</button>
             </form>
             @endcan
             @foreach ($courses as $course)
@@ -18,8 +19,8 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ $course['name'] }}</h5>
                   <p class="card-text"><strong>Docenti</strong>
-                  @foreach($course->members as $course_member)
-                    {{ $course_member->name }}&nbsp;{{ $course_member->surname }},
+                  @foreach($course->users as $course_user)
+                    {{ $course_user->firstname }}&nbsp;{{ $course_user->lastname }},
                   @endforeach
                   </p>
                   <p class="card-text">{{ $course['description'] }}</p>

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Member;
+use App\Models\User;
 use App\Models\Course;
 
 class MemberController extends Controller
 {
     public function index(){
-        $members = Member::all();
+        $members = User::all();
         return view('chisiamo.index', compact('members'));
     }
 
@@ -18,29 +18,29 @@ class MemberController extends Controller
     }
     public function store(Request $request){
 
-        $validated = $request->validate(['name' => ['required','min:3'],'surname' => ['required','min:3'],'role' => ['required','min:3'],'description' => ['required','min:3']]);
-        Member::create($validated);
+        $validated = $request->validate(['firstname' => ['required','min:3'],'lastname' => ['required','min:3'],'email' => ['required','min:3']]);
+        User::create($validated);
         return to_route('chisiamo.index');
     }
 
-    public function edit(Member $member){
+    public function edit(User $member){
         $courses=Course::all();
         return view('chisiamo.edit', compact('member','courses'));
     }
-    public function update(Request $request,Member $member){
+    public function update(Request $request,User $member){
 
-        $validated = $request->validate(['name' => ['required','min:3'],'surname' => ['required','min:3'],'role' => ['required','min:3'],'description' => ['required','min:3']]);
+        $validated = $request->validate(['firstname' => ['required','min:3'],'lastname' => ['required','min:3'],'email' => ['required','min:3']]);
         $member->update($validated);
 
         return to_route('chisiamo.index');
     }
-    public function destroy(Member $member){
+    public function destroy(User $member){
 
         $member->delete();
 
         return back()->with('message','Member destroyed');
     }
-    public function assignCourse(Request $request, Member $member){
+    public function assignCourse(Request $request, User $member){
 
         if ($member->courses->contains($request->course)){
             return back()->with('message','Course already assigned');
@@ -49,7 +49,7 @@ class MemberController extends Controller
         $member->courses()->attach($request->course);
         return back()->with('message','Course assigned');
     }
-    public function revokeCourse(Member $member, Course $course){
+    public function revokeCourse(User $member, Course $course){
 
         if ($member->courses->contains($course->id)){
             $member->courses()->detach($course->id);

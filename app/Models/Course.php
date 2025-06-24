@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Member;
+use App\Models\User;
 
 class Course extends Model
 {
     use HasFactory;
 
-    public function members(){
-        return $this->belongsToMany(Member::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 
     protected $guarded = [];

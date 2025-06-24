@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('images/icona.webp') }}">
+    <link rel="icon" href="{{ asset('icona.ico') }}">
     @yield('header')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -68,12 +68,12 @@
                 </li>
             @endguest
             @auth
-                <div class="dropdown">
+                <div class="dropdown text-center">
                   <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <strong>{{ auth()->user()->email }}</strong>
                   </a>
-                  <a class="text-white text-decoration-none" style="padding-left:30%" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ auth()->user()->getRoleNames()->first() }}
+                  <a class="text-white text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ auth()->user()->getRoleNames() }}
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                     <form method="POST" action="/logout" class="d-flex justify-content-center pt-3">
