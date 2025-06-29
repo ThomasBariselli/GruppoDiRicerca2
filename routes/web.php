@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemberGuestController;
 use App\Models\Member;
@@ -93,6 +94,11 @@ Route::middleware(['auth','can:edit-course'])->name('corsi.')->prefix('corsi')->
 
 Route::get('/corsi',[CourseGuestController::class,'index'])->name('corsi.index');
 Route::resource('/corsi',CourseGuestController::class);
+
+Route::get('/account', function () {
+    return view('account');
+});
+Route::put('/account/{user}', [AccountController::class , 'update'])->name('account');
 
 
 

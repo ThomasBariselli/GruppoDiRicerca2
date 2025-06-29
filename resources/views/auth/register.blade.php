@@ -9,9 +9,9 @@
             @csrf
 
             <div class="row mb-3" >
-                <label for="first-name" class="col-sm-2 col-form-label">Nome</label>
+                <label for="firstname" class="col-sm-2 col-form-label">Nome</label>
                 <div class="col-mb-3">
-                <input type="first-name" class="form-control" name="first-name" id="first-name" placeholder="Nome" required>
+                <input type="firstname" class="form-control" name="firstname" id="firstname" placeholder="Nome" required>
                 </div>
 
                 @error('first-name')
@@ -19,9 +19,9 @@
                 @enderror
             </div>
             <div class="row mb-3" >
-                <label for="last-name" class="col-sm-2 col-form-label">Cognome</label>
+                <label for="lastname" class="col-sm-2 col-form-label">Cognome</label>
                 <div class="col-mb-3">
-                <input type="last-name" class="form-control" name="last-name" id="last-name" placeholder="Cognome" required>
+                <input type="lastname" class="form-control" name="lastname" id="lastname" placeholder="Cognome" required>
                 </div>
 
                 @error('last-name')
