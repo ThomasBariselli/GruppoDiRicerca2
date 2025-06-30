@@ -114,6 +114,9 @@
           {{ auth()->user()->getRoleNames() }}
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+          <form action="/account" class="d-flex justify-content-center pt-3">
+            <li><button type="submit" class="btn btn-secondary" style="background-color:#343a40;border:none">Account</button></li>
+          </form>
           <form method="POST" action="/logout" class="d-flex justify-content-center pt-3">
             @csrf
             <li><button type="submit" class="btn btn-secondary" style="background-color:#343a40;border:none">Sign out</button></li>

@@ -4,8 +4,8 @@
     </title>
 
     <div class="container-fluid" style="margin-top:7%">
-        <h2 class="text-center">EDIT ACCOUNT</h2>
-        <form method="POST" action="{{ route('account',auth()->user()->id)}}" class="mt-5 pb-5" style="width:40%;margin-left:30%">
+        <h2 class="text-center">CAMBIO PASSWORD</h2>
+        <form method="POST" action="{{ route('cambiopwd',auth()->user()->id)}}" class="mt-5 pb-5" style="width:40%;margin-left:30%">
             @csrf
             @method('PUT')
 

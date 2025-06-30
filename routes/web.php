@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemberGuestController;
+use App\Http\Controllers\PubbGuestController;
+use App\Http\Controllers\PubbController;
 use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LanguageMiddleware;
@@ -99,9 +101,23 @@ Route::get('/account', function () {
     return view('account');
 });
 Route::put('/account/{user}', [AccountController::class , 'update'])->name('account');
+Route::put('/cambiopwd/{user}', [AccountController::class , 'updatePwd'])->name('cambiopwd');
 
 
+Route::middleware(['auth','can:edit-publication'])->name('pubblicazioni.')->prefix('pubblicazioni')->group(function() {
+    Route::resource('/',PubbController::class);
+    Route::post('/create',[PubbController::class,'create'])->name('create');
+    Route::post('/create/store',[PubbController::class,'store'])->name('store');
+    Route::get('/{publication}/edit',[PubbController::class,'edit'])->name('edit');
+    Route::put('/{publication}',[PubbController::class,'update'])->name('update');
+    Route::delete('/{publication}',[PubbController::class,'destroy'])->name('destroy');
+    Route::post('/{publication}/edit', [PubbController::class, 'assignMember'])->name('members.assign');
+    Route::delete('/{publication}/edit/{member}', [PubbController::class, 'revokeMember'])->name('members.revoke');
+    
+});
 
+Route::get('/pubblicazioni',[PubbGuestController::class,'index'])->name('pubblicazioni.index');
+Route::resource('/pubblicazioni',PubbGuestController::class);
 
 
 
