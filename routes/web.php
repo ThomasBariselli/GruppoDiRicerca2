@@ -15,6 +15,8 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemberGuestController;
 use App\Http\Controllers\PubbGuestController;
 use App\Http\Controllers\PubbController;
+use App\Http\Controllers\ProjectGuestController;
+use App\Http\Controllers\ProjectController;
 use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LanguageMiddleware;
@@ -118,6 +120,21 @@ Route::middleware(['auth','can:edit-publication'])->name('pubblicazioni.')->pref
 
 Route::get('/pubblicazioni',[PubbGuestController::class,'index'])->name('pubblicazioni.index');
 Route::resource('/pubblicazioni',PubbGuestController::class);
+
+Route::middleware(['auth','can:edit-project'])->name('progetti.')->prefix('progetti')->group(function() {
+    Route::resource('/',ProjectController::class);
+    Route::post('/create',[ProjectController::class,'create'])->name('create');
+    Route::post('/create/store',[ProjectController::class,'store'])->name('store');
+    Route::get('/{project}/edit',[ProjectController::class,'edit'])->name('edit');
+    Route::put('/{project}',[ProjectController::class,'update'])->name('update');
+    Route::delete('/{project}',[ProjectController::class,'destroy'])->name('destroy');
+    Route::post('/{project}/edit', [ProjectController::class, 'assignMember'])->name('members.assign');
+    Route::delete('/{project}/edit/{member}', [ProjectController::class, 'revokeMember'])->name('members.revoke');
+    
+});
+
+Route::get('/progetti',[ProjectGuestController::class,'index'])->name('progetti.index');
+Route::resource('/progetti',ProjectGuestController::class);
 
 
 

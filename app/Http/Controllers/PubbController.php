@@ -45,18 +45,6 @@ class PubbController extends Controller
 
         $validated = $request->validate(['title' => ['required','min:3'],'description' => ['required','min:3'],'doi' => ['required','min:15']]);
 
-        $doi = request()->validate([
-            'doi' => ['required','min:15']
-        ]);
-
-        $exists = Publication::where('doi', $doi)->exists();
-
-        if($exists){
-
-            throw ValidationException::withMessages([
-                'doi' => 'Questo doi è già presente'
-            ]);
-        }
         $publication->update($validated);
 
         return to_route('pubblicazioni.index');
