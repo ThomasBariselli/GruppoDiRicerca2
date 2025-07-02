@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class MemberController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index(){
         $members = User::all();
         return view('chisiamo.index', compact('members'));
@@ -24,11 +28,16 @@ class MemberController extends Controller
     }
 
     public function edit(User $member){
+        
+    if (Auth::id() != $member->id) {
+        abort(403, 'Accesso non autorizzato');
+    }
+
         $courses=Course::all();
         return view('chisiamo.edit', compact('member','courses'));
     }
     public function update(Request $request,User $member){
-
+        $this->authorize('update', $member);
         $validated = $request->validate(['firstname' => ['required','min:3'],'lastname' => ['required','min:3'],'email' => ['required','min:3']]);
         $member->update($validated);
 

@@ -8,6 +8,7 @@
         
         <h2 class="mb-5">IL NOSTRO TEAM<br></h2>
             <div class="container-fluid" style="align-items:center">
+            
             @foreach ($members as $member)
               @if($member->getRoleNames()->first()=='teacher' || $member->getRoleNames()->first()=='collab' || $member->getRoleNames()->get(1)=='collab' || $member->getRoleNames()->get(1)=='teacher')
                 <div class="card border-primary mb-3">
@@ -16,14 +17,16 @@
                     <p class="card-text"><strong>{{ $member['email'] }}</strong></p>
                     <p class="card-text">{{ $member->getRoleNames() }}</p>
                   </div>
-                  @can('edit-member')
-                    <form method="POST"  action="{{ route('chisiamo.destroy', $member->id) }}" onsubmit="return confirm('Are you sure?');">
-                      @csrf
-                      @method('DELETE')
-                      <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('chisiamo.edit', $member->id) }}'">Edit</button>
-                      <button type="submit" class="btn btn-danger mb-3">Delete</button>
-                    </form>
-                  @endcan
+                  @if(auth()->user()->id==$member->id)
+                    @can('edit-member')
+                      <form method="POST"  action="{{ route('chisiamo.destroy', $member->id) }}" onsubmit="return confirm('Are you sure?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('chisiamo.edit', $member->id) }}'">Edit</button>
+                        <button type="submit" class="btn btn-danger mb-3">Delete</button>
+                      </form>
+                    @endcan
+                  @endif
                 </div>
               @endif
             @endforeach
