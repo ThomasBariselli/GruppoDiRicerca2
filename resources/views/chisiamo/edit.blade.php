@@ -9,17 +9,17 @@
             @method('PUT')
 
             <div class="row mb-3" >
-                <label for="name" class="col-sm-2 col-form-label">Nome</label>
+                <label for="firstname" class="col-sm-2 col-form-label">Nome</label>
                 <div class="col-mb-3">
-                <input type="name" class="form-control" name="name" id="name" placeholder="Nome" value="{{ $member->firstname }}" required>
+                <input type="firstname" class="form-control" name="firstname" id="firstname" placeholder="Nome" value="{{ $member->firstname }}" required>
                 </div>
-                <label for="surname" class="col-sm-2 col-form-label">Cognome</label>
+                <label for="lastname" class="col-sm-2 col-form-label">Cognome</label>
                 <div class="col-mb-3">
-                <input type="surname" class="form-control" name="surname" id="surname" placeholder="Cognome" value="{{ $member->lastname }}" required>
+                <input type="lastname" class="form-control" name="lastname" id="lastname" placeholder="Cognome" value="{{ $member->lastname }}" required>
                 </div>
-                <label for="role" class="col-sm-2 col-form-label">Titolo</label>
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-mb-3">
-                <input type="role" class="form-control" name="role" id="role" placeholder="Titolo" value="{{ $member->email }}">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ $member->email }}" required>
                 </div>
 
                 @error('name')

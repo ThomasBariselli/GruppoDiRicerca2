@@ -37,7 +37,11 @@ class MemberController extends Controller
         return view('chisiamo.edit', compact('member','courses'));
     }
     public function update(Request $request,User $member){
-        $this->authorize('update', $member);
+        
+        if (Auth::id() != $member->id) {
+            abort(403, 'Accesso non autorizzato');
+        }
+
         $validated = $request->validate(['firstname' => ['required','min:3'],'lastname' => ['required','min:3'],'email' => ['required','min:3']]);
         $member->update($validated);
 

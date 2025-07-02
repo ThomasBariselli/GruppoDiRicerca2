@@ -23,7 +23,6 @@
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('chisiamo.edit', $member->id) }}'">Edit</button>
-                        <button type="submit" class="btn btn-danger mb-3">Delete</button>
                       </form>
                     @endcan
                   @endif
