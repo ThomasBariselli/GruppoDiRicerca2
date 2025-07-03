@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Course;
+use App\Models\Project;
 
 class User extends Authenticatable
 {
@@ -16,6 +17,10 @@ class User extends Authenticatable
 
     public function courses(){
         return $this->belongsToMany(Course::class);
+    }
+
+    public function projects(){
+        return $this->belongsToMany(Project::class);
     }
 
     /**

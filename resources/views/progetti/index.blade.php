@@ -19,6 +19,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ $project['title'] }}</h5>
                   <p class="card-text"><strong>Stato: </strong>{{ $project['status'] }}</p>
+                  <p class="card-text"><strong>Leader: </strong>{{ $project['leaderemail'] }}</p>
                   <p class="card-text"><strong>Autori: </strong>
                   @foreach($project->users as $project_user)
                     {{ $project_user->firstname }}&nbsp;{{ $project_user->lastname }},
@@ -26,14 +27,16 @@
                   </p>
                   <p class="card-text"><strong>Descrizione: </strong>{{ $project['description'] }}</p>
                 </div>
-                @can('edit-project')
-                  <form method="POST"  action="{{ route('progetti.destroy', $project->id) }}" onsubmit="return confirm('Are you sure?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('progetti.edit', $project->id) }}'">Edit</button>
-                    <button type="submit" class="btn btn-danger mb-3">Delete</button>
-                  </form>
-                @endcan
+                @if($project->leaderemail==auth()->user()->email)
+                  @can('edit-project')
+                    <form method="POST"  action="{{ route('progetti.destroy', $project->id) }}" onsubmit="return confirm('Are you sure?');">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('progetti.edit', $project->id) }}'">Edit</button>
+                      <button type="submit" class="btn btn-danger mb-3">Delete</button>
+                    </form>
+                  @endcan
+                @endif
               </div>
             @endforeach
             </div>

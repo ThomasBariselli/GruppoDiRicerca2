@@ -15,12 +15,20 @@
                 <div class="col-mb-3">
                 <input type="status" class="form-control" name="status" id="status" placeholder="Stato" value="In corso" readonly>
                 </div>
+                <label for="leaderemail" class="col-sm-4 col-form-label">Email del capo progetto</label>
+                <div class="col-mb-3">
+                <input type="leaderemail" class="form-control" name="leaderemail" id="leaderemail" placeholder="Email" required>
+                </div>
                 <label for="description" class="col-sm-2 col-form-label">Descrizione</label>
                 <div class="col-mb-3">
                 <input type="description" class="form-control" name="description" id="description">
                 </div>
 
                 @error('title')
+                    <p class="text-xs text-red-500 font-semibold mt-1 italic">{{ $message }}</p>
+                @enderror
+
+                @error('leaderemail')
                     <p class="text-xs text-red-500 font-semibold mt-1 italic">{{ $message }}</p>
                 @enderror
             </div>
@@ -30,5 +38,6 @@
                 <button type="submit" class="btn btn-success" style="float:right">Save</button>
             </div>
         </form>
+        
         
   </div>
