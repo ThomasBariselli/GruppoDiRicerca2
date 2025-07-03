@@ -27,7 +27,7 @@
                   </p>
                   <p class="card-text"><strong>Descrizione: </strong>{{ $project['description'] }}</p>
                 </div>
-                @if($project->leaderemail==auth()->user()->email)
+                @if($project->leaderemail==auth()->user()->email || $project->users->contains(auth()->user()->id))
                   @can('edit-project')
                     <form method="POST"  action="{{ route('progetti.destroy', $project->id) }}" onsubmit="return confirm('Are you sure?');">
                       @csrf

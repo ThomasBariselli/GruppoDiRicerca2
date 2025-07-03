@@ -50,14 +50,14 @@ class ProjectController extends Controller
     }
 
     public function edit(Project $project){
-            if (Auth::user()->email != $project->leaderemail) {
+            if (Auth::user()->email != $project->leaderemail && !$project->users->contains(Auth::id())) {
             abort(403, 'Accesso non autorizzato');
         }
         $members=User::all();
         return view('progetti.edit', compact('project','members'));
     }
     public function update(Request $request,Project $project){
-        if (Auth::user()->email != $project->leaderemail) {
+        if (Auth::user()->email != $project->leaderemail && !$project->users->contains(Auth::id())) {
             abort(403, 'Accesso non autorizzato');
         }
         $validated = $request->validate(['title' => ['required','min:3'],'description' => ['required','min:3'],'status' => ['required']]);
