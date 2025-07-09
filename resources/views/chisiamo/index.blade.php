@@ -17,6 +17,7 @@
                     <p class="card-text"><strong>{{ $member['email'] }}</strong></p>
                     <p class="card-text">{{ $member->getRoleNames() }}</p>
                   </div>
+                  @auth
                   @if(auth()->user()->id==$member->id)
                     @can('edit-member')
                       <form method="POST"  action="{{ route('chisiamo.destroy', $member->id) }}" onsubmit="return confirm('Are you sure?');">
@@ -26,6 +27,7 @@
                       </form>
                     @endcan
                   @endif
+                  @endauth
                 </div>
               @endif
             @endforeach

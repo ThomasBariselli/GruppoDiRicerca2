@@ -11,6 +11,10 @@
                 <div class="col-mb-3">
                 <input type="title" class="form-control" name="title" id="title" placeholder="Titolo" required>
                 </div>
+                <label for="leaderemail" class="col-sm-3 col-form-label">Email leader</label>
+                <div class="col-mb-3">
+                <input type="leaderemail" class="form-control" name="leaderemail" id="leaderemail" placeholder="Email leader" required>
+                </div>
                 <label for="doi" class="col-sm-2 col-form-label">DOI</label>
                 <div class="col-mb-3">
                 <input type="doi" class="form-control" name="doi" id="doi" placeholder="DOI" required>

@@ -18,7 +18,7 @@
                     <p class="text-xs text-danger font-semibold mt-1"><i>{{ $message }}</i></p>
                 @enderror
             </div>
-            <div class="row mb-3 ">
+            <div class="row mb-3 pb-3">
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-mb-3">
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password">
@@ -27,9 +27,6 @@
                 @error('password')
                     <p class="text-xs text-danger font-semibold mt-1"><i>{{ $message }}</i></p>
                 @enderror
-            </div>
-            <div class="container-fluid text-center pt-3 pb-3">
-                <a class="text-underline text-secondary" href="/resetpassword">Reset password</a>
             </div>
             <hr>
             <div class="container-fluid d-flex justify-content-between pt-3">

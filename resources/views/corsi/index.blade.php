@@ -18,6 +18,7 @@
               <div class="card border-primary mb-3">
                 <div class="card-body">
                   <h5 class="card-title">{{ $course['name'] }}</h5>
+                  <p class="card-text"><strong>Capo del corso: </strong>{{ $course['leaderemail'] }}</p>
                   <p class="card-text"><strong>Docenti</strong>
                   @foreach($course->users as $course_user)
                     {{ $course_user->firstname }}&nbsp;{{ $course_user->lastname }},
@@ -25,14 +26,18 @@
                   </p>
                   <p class="card-text">{{ $course['description'] }}</p>
                 </div>
-                @can('edit-course')
-                  <form method="POST"  action="{{ route('corsi.destroy', $course->id) }}" onsubmit="return confirm('Are you sure?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('corsi.edit', $course->id) }}'">Edit</button>
-                    <button type="submit" class="btn btn-danger mb-3">Delete</button>
-                  </form>
-                @endcan
+                @auth
+                @if($course->leaderemail==auth()->user()->email || $course->users->contains(auth()->user()->id))
+                  @can('edit-course')
+                    <form method="POST"  action="{{ route('corsi.destroy', $course->id) }}" onsubmit="return confirm('Are you sure?');">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('corsi.edit', $course->id) }}'">Edit</button>
+                      <button type="submit" class="btn btn-danger mb-3">Delete</button>
+                    </form>
+                  @endcan
+                @endif
+                @endauth
               </div>
             @endforeach
             </div>

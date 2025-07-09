@@ -20,13 +20,14 @@
                   <h5 class="card-title">{{ $project['title'] }}</h5>
                   <p class="card-text"><strong>Stato: </strong>{{ $project['status'] }}</p>
                   <p class="card-text"><strong>Leader: </strong>{{ $project['leaderemail'] }}</p>
-                  <p class="card-text"><strong>Autori: </strong>
+                  <p class="card-text"><strong>Membri: </strong>
                   @foreach($project->users as $project_user)
                     {{ $project_user->firstname }}&nbsp;{{ $project_user->lastname }},
                   @endforeach
                   </p>
                   <p class="card-text"><strong>Descrizione: </strong>{{ $project['description'] }}</p>
                 </div>
+                @auth
                 @if($project->leaderemail==auth()->user()->email || $project->users->contains(auth()->user()->id))
                   @can('edit-project')
                     <form method="POST"  action="{{ route('progetti.destroy', $project->id) }}" onsubmit="return confirm('Are you sure?');">
@@ -37,6 +38,7 @@
                     </form>
                   @endcan
                 @endif
+                @endauth
               </div>
             @endforeach
             </div>

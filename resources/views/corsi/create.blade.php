@@ -11,6 +11,10 @@
                 <div class="col-mb-3">
                 <input type="name" class="form-control" name="name" id="name" placeholder="Nome" required>
                 </div>
+                <label for="leaderemail" class="col-sm-2 col-form-label">Capo del corso</label>
+                <div class="col-mb-3">
+                <input type="leaderemail" class="form-control" name="leaderemail" id="leaderemail" placeholder="Email capo corso" required>
+                </div>
                 <label for="description" class="col-sm-2 col-form-label">Descrizione</label>
                 <div class="col-mb-3">
                 <input type="description" class="form-control" name="description" id="description" placeholder="Descrizione" required>

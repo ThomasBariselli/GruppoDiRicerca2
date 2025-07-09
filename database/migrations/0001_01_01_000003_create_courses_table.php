@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('leaderemail');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

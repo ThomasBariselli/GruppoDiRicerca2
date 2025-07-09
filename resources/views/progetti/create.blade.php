@@ -25,11 +25,11 @@
                 </div>
 
                 @error('title')
-                    <p class="text-xs text-red-500 font-semibold mt-1 italic">{{ $message }}</p>
+                    <p class="text-xs text-red " style="color:red">{{ $message }}</p>
                 @enderror
 
                 @error('leaderemail')
-                    <p class="text-xs text-red-500 font-semibold mt-1 italic">{{ $message }}</p>
+                    <p class="text-xs text-red-500 font-semibold mt-1 italic" style="color:red">{{ $message }}</p>
                 @enderror
             </div>
             

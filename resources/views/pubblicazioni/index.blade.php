@@ -20,6 +20,7 @@
                   <h5 class="card-title">{{ $pubblicazione['title'] }}</h5>
                   <p class="card-text"><strong>DOI: </strong>{{ $pubblicazione['doi'] }}</p>
                   <p class="card-text"><strong>In book: </strong>{{ $pubblicazione['inbook'] }}</p>
+                  <p class="card-text"><strong>Leader: </strong>{{ $pubblicazione['leaderemail'] }}</p>
                   <p class="card-text"><strong>Autori: </strong>
                   @foreach($pubblicazione->users as $pubblicazione_user)
                     {{ $pubblicazione_user->firstname }}&nbsp;{{ $pubblicazione_user->lastname }},
@@ -27,14 +28,18 @@
                   </p>
                   <p class="card-text"><strong>Descrizione: </strong>{{ $pubblicazione['description'] }}</p>
                 </div>
-                @can('edit-publication')
-                  <form method="POST"  action="{{ route('pubblicazioni.destroy', $pubblicazione->id) }}" onsubmit="return confirm('Are you sure?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('pubblicazioni.edit', $pubblicazione->id) }}'">Edit</button>
-                    <button type="submit" class="btn btn-danger mb-3">Delete</button>
-                  </form>
-                @endcan
+                @auth
+                @if($pubblicazione->leaderemail==auth()->user()->email || $pubblicazione->users->contains(auth()->user()->id))
+                  @can('edit-publication')
+                    <form method="POST"  action="{{ route('pubblicazioni.destroy', $pubblicazione->id) }}" onsubmit="return confirm('Are you sure?');">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" class="btn btn-primary mb-3" onclick="location.href='{{ route('pubblicazioni.edit', $pubblicazione->id) }}'">Edit</button>
+                      <button type="submit" class="btn btn-danger mb-3">Delete</button>
+                    </form>
+                  @endcan
+                @endif
+                @endauth
               </div>
             @endforeach
             </div>
