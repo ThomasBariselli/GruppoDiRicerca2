@@ -25,8 +25,8 @@ class RoleSeeder extends Seeder
         $editProject=Permission::create(['name' => 'edit-project']);
         $editPublication=Permission::create(['name' => 'edit-publication']);
         $viewPublication=Permission::create(['name' => 'view-publication']);
-        $viewCourse=Permission::create(['name' => 'view-project']);
-        $viewProject=Permission::create(['name' => 'view-course']);
+        $viewCourse=Permission::create(['name' => 'view-course']);
+        $viewProject=Permission::create(['name' => 'view-project']);
 
         
         $admin->givePermissionTo([
@@ -41,18 +41,13 @@ class RoleSeeder extends Seeder
             $editProject,
             $editCourse,
             $editPublication,
-            $viewPublication,
-            $viewCourse,
-            $viewProject
         ]);
 
         $collab->givePermissionTo([
              $editMember,
              $editProject,
              $editPublication,
-             $viewPublication,
              $viewCourse,
-             $viewProject
         ]);
 
 
