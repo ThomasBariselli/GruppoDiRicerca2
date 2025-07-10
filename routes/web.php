@@ -20,6 +20,8 @@ use App\Http\Controllers\ProjectController;
 use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LanguageMiddleware;
+use Illuminate\Support\Facades\Auth;
+
 
 
 Route::get('/', function () {
@@ -99,6 +101,11 @@ Route::middleware(['guest'])->name('guest.corsi')->prefix('guest/corsi')->group(
     Route::get('/',[CourseGuestController::class,'index'])->name('index');
     Route::resource('/',CourseGuestController::class);
 });
+Route::middleware(['auth','can:view-course'])->name('guest.corsi')->prefix('guest/corsi')->group(function() {
+    Route::get('/',[CourseGuestController::class,'index'])->name('index');
+    Route::resource('/',CourseGuestController::class);
+});
+
 
 Route::get('/account', function () {
     return view('account');
@@ -122,6 +129,10 @@ Route::middleware(['guest'])->name('guest.pubblicazioni')->prefix('guest/pubblic
     Route::get('/',[PubbGuestController::class,'index'])->name('index');
     Route::resource('/',PubbGuestController::class);
 });
+Route::middleware(['auth','can:view-publication'])->name('guest.pubblicazioni')->prefix('guest/pubblicazioni')->group(function() {
+    Route::get('/',[PubbGuestController::class,'index'])->name('index');
+    Route::resource('/',PubbGuestController::class);
+});
 
 Route::middleware(['auth','can:edit-project'])->name('progetti.')->prefix('progetti')->group(function() {
     Route::resource('/',ProjectController::class);
@@ -135,6 +146,10 @@ Route::middleware(['auth','can:edit-project'])->name('progetti.')->prefix('proge
     
 });
 Route::middleware(['guest'])->name('guest.progetti')->prefix('guest/progetti')->group(function() {
+    Route::get('/',[ProjectGuestController::class,'index'])->name('index');
+    Route::resource('/',ProjectGuestController::class);
+});
+Route::middleware(['auth','can:view-project'])->name('guest.progetti')->prefix('guest/progetti')->group(function() {
     Route::get('/',[ProjectGuestController::class,'index'])->name('index');
     Route::resource('/',ProjectGuestController::class);
 });
