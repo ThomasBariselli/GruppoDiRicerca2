@@ -97,11 +97,12 @@ Route::middleware(['auth','can:edit-course'])->name('corsi.')->prefix('corsi')->
     Route::delete('/{course}/edit/{member}', [CourseController::class, 'revokeMember'])->name('chisiamo.revoke');
     
 });
+
 Route::middleware(['guest'])->name('guest.corsi')->prefix('guest/corsi')->group(function() {
     Route::get('/',[CourseGuestController::class,'index'])->name('index');
     Route::resource('/',CourseGuestController::class);
 });
-Route::middleware(['auth','can:view-course'])->name('guest.corsi')->prefix('guest/corsi')->group(function() {
+Route::middleware(['auth','can:view-course'])->name('auth.corsi')->prefix('auth/corsi')->group(function() {
     Route::get('/',[CourseGuestController::class,'index'])->name('index');
     Route::resource('/',CourseGuestController::class);
 });
@@ -129,7 +130,7 @@ Route::middleware(['guest'])->name('guest.pubblicazioni')->prefix('guest/pubblic
     Route::get('/',[PubbGuestController::class,'index'])->name('index');
     Route::resource('/',PubbGuestController::class);
 });
-Route::middleware(['auth','can:view-publication'])->name('guest.pubblicazioni')->prefix('guest/pubblicazioni')->group(function() {
+Route::middleware(['auth','can:view-publication'])->name('auth.pubblicazioni')->prefix('auth/pubblicazioni')->group(function() {
     Route::get('/',[PubbGuestController::class,'index'])->name('index');
     Route::resource('/',PubbGuestController::class);
 });
@@ -149,7 +150,7 @@ Route::middleware(['guest'])->name('guest.progetti')->prefix('guest/progetti')->
     Route::get('/',[ProjectGuestController::class,'index'])->name('index');
     Route::resource('/',ProjectGuestController::class);
 });
-Route::middleware(['auth','can:view-project'])->name('guest.progetti')->prefix('guest/progetti')->group(function() {
+Route::middleware(['auth','can:view-project'])->name('auth.progetti')->prefix('auth/progetti')->group(function() {
     Route::get('/',[ProjectGuestController::class,'index'])->name('index');
     Route::resource('/',ProjectGuestController::class);
 });
