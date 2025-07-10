@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
   <title>  
     Pubblicazioni - Gruppo di Ricerca
   </title>
@@ -15,10 +16,16 @@
                 <div class="col-mb-3">
                 <input type="leaderemail" class="form-control" name="leaderemail" id="leaderemail" placeholder="Email leader" required>
                 </div>
+                @error('leaderemail')
+                    <p class="text-xs text-red" style="color:red">{{ $message }}</p>
+                @enderror
                 <label for="doi" class="col-sm-2 col-form-label">DOI</label>
                 <div class="col-mb-3">
                 <input type="doi" class="form-control" name="doi" id="doi" placeholder="DOI" required>
                 </div>
+                @error('doi')
+                    <p class="text-xs text-red" style="color:red">{{ $message }}</p>
+                @enderror
                 <label for="inbook" class="col-sm-2 col-form-label">In Book</label>
                 <div class="col-mb-3">
                 <input type="inbook" class="form-control" name="inbook" id="inbook" placeholder="In-Book">
@@ -27,10 +34,6 @@
                 <div class="col-mb-3">
                 <input type="description" class="form-control" name="description" id="description" placeholder="Descrizione">
                 </div>
-
-                @error('doi')
-                    <p class="text-xs text-red-500 font-semibold mt-1 italic">{{ $message }}</p>
-                @enderror
             </div>
             
             <hr>

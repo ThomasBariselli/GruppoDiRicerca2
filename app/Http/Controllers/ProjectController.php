@@ -38,6 +38,7 @@ class ProjectController extends Controller
             throw ValidationException::withMessages([
                 'title' => 'Questo progetto è già presente'
             ]);
+            
         }
         if(!$existsEmail){
 

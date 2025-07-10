@@ -1,4 +1,5 @@
 @extends('layouts.app')
+  
   <title>  
     Corsi - Gruppo di Ricerca
   </title>
@@ -11,18 +12,20 @@
                 <div class="col-mb-3">
                 <input type="name" class="form-control" name="name" id="name" placeholder="Nome" required>
                 </div>
+                @error('name')
+                    <p class="text-xs text-red" style="color:red">{{ $message }}</p>
+                @enderror
                 <label for="leaderemail" class="col-sm-2 col-form-label">Capo del corso</label>
                 <div class="col-mb-3">
                 <input type="leaderemail" class="form-control" name="leaderemail" id="leaderemail" placeholder="Email capo corso" required>
                 </div>
+                @error('leaderemail')
+                    <p class="text-xs text-red" style="color:red">{{ $message }}</p>
+                @enderror
                 <label for="description" class="col-sm-2 col-form-label">Descrizione</label>
                 <div class="col-mb-3">
                 <input type="description" class="form-control" name="description" id="description" placeholder="Descrizione" required>
                 </div>
-
-                @error('name')
-                    <p class="text-xs text-red-500 font-semibold mt-1 italic">{{ $message }}</p>
-                @enderror
             </div>
             
             <hr>

@@ -95,9 +95,10 @@ Route::middleware(['auth','can:edit-course'])->name('corsi.')->prefix('corsi')->
     Route::delete('/{course}/edit/{member}', [CourseController::class, 'revokeMember'])->name('chisiamo.revoke');
     
 });
-
-Route::get('/corsi',[CourseGuestController::class,'index'])->name('corsi.index');
-Route::resource('/corsi',CourseGuestController::class);
+Route::middleware(['guest'])->name('guest.corsi')->prefix('guest/corsi')->group(function() {
+    Route::get('/',[CourseGuestController::class,'index'])->name('index');
+    Route::resource('/',CourseGuestController::class);
+});
 
 Route::get('/account', function () {
     return view('account');
@@ -117,9 +118,10 @@ Route::middleware(['auth','can:edit-publication'])->name('pubblicazioni.')->pref
     Route::delete('/{publication}/edit/{member}', [PubbController::class, 'revokeMember'])->name('members.revoke');
     
 });
-
-Route::get('/pubblicazioni',[PubbGuestController::class,'index'])->name('pubblicazioni.index');
-Route::resource('/pubblicazioni',PubbGuestController::class);
+Route::middleware(['guest'])->name('guest.pubblicazioni')->prefix('guest/pubblicazioni')->group(function() {
+    Route::get('/',[PubbGuestController::class,'index'])->name('index');
+    Route::resource('/',PubbGuestController::class);
+});
 
 Route::middleware(['auth','can:edit-project'])->name('progetti.')->prefix('progetti')->group(function() {
     Route::resource('/',ProjectController::class);
@@ -132,9 +134,11 @@ Route::middleware(['auth','can:edit-project'])->name('progetti.')->prefix('proge
     Route::delete('/{project}/edit/{member}', [ProjectController::class, 'revokeMember'])->name('members.revoke');
     
 });
+Route::middleware(['guest'])->name('guest.progetti')->prefix('guest/progetti')->group(function() {
+    Route::get('/',[ProjectGuestController::class,'index'])->name('index');
+    Route::resource('/',ProjectGuestController::class);
+});
 
-Route::get('/progetti',[ProjectGuestController::class,'index'])->name('progetti.index');
-Route::resource('/progetti',ProjectGuestController::class);
 
 
 

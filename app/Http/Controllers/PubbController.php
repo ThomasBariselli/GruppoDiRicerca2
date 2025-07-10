@@ -11,7 +11,7 @@ use App\Models\User;
 class PubbController extends Controller
 {
     public function index(){
-        $publications = Publication::all();
+        $pubblicazioni = Publication::all();
         return view('pubblicazioni.index', compact('pubblicazioni'));
     }
 

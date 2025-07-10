@@ -1,4 +1,9 @@
 @extends('layouts.app')
+  
+  @php
+    $activeMenu = 'progetti';
+  @endphp
+
   <title>  
     Progetti - Gruppo di Ricerca
   </title>

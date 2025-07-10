@@ -1,4 +1,5 @@
 @extends('layouts.app')
+    
   <title>  
     Progetti - Gruppo di Ricerca
   </title>
@@ -11,6 +12,9 @@
                 <div class="col-mb-3">
                 <input type="title" class="form-control" name="title" id="title" placeholder="Titolo" required>
                 </div>
+                @error('title')
+                    <p class="text-xs text-red " style="color:red">{{ $message }}</p>
+                @enderror
                 <label for="status" class="col-sm-2 col-form-label">Stato</label>
                 <div class="col-mb-3">
                 <input type="status" class="form-control" name="status" id="status" placeholder="Stato" value="In corso" readonly>
@@ -19,18 +23,14 @@
                 <div class="col-mb-3">
                 <input type="leaderemail" class="form-control" name="leaderemail" id="leaderemail" placeholder="Email" required>
                 </div>
+                @error('leaderemail')
+                    <p class="text-xs text-red " style="color:red">{{ $message }}</p>
+                @enderror
                 <label for="description" class="col-sm-2 col-form-label">Descrizione</label>
                 <div class="col-mb-3">
                 <input type="description" class="form-control" name="description" id="description">
                 </div>
-
-                @error('title')
-                    <p class="text-xs text-red " style="color:red">{{ $message }}</p>
-                @enderror
-
-                @error('leaderemail')
-                    <p class="text-xs text-red-500 font-semibold mt-1 italic" style="color:red">{{ $message }}</p>
-                @enderror
+                
             </div>
             
             <hr>

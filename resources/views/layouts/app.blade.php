@@ -43,15 +43,36 @@
             <li class="nav-item">
               <a class="{{ request()->is('chisiamo') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="/chisiamo">CHI SIAMO</a>
             </li>
-            <li class="nav-item">
-              <a class="{{ request()->is('progetti') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="/progetti">PROGETTI</a>
-            </li>
-            <li class="nav-item">
-              <a class="{{ request()->is('pubblicazioni') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="/pubblicazioni">PUBBLICAZIONI</a>
-            </li>
-            <li class="nav-item">
-              <a class="{{ request()->is('corsi') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="/corsi">CORSI</a>
-            </li>
+            @guest
+              <li class="nav-item">
+                <a class="nav-link {{ ($activeMenu ?? '') === 'progetti' ? 'active' : '' }}" aria-current="page" href="/guest/progetti">PROGETTI</a>
+              </li>
+            @endguest
+            @auth
+              <li class="nav-item">
+                <a class="{{ request()->is('progetti') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="/progetti">PROGETTI</a>
+              </li>
+            @endauth
+            @guest
+              <li class="nav-item">
+                <a class="nav-link {{ ($activeMenu ?? '') === 'pubblicazioni' ? 'active' : '' }}" aria-current="page" href="/guest/pubblicazioni">PUBBLICAZIONI</a>
+              </li>
+            @endguest
+            @auth
+              <li class="nav-item">
+                <a class="{{ request()->is('pubblicazioni') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="/pubblicazioni">PUBBLICAZIONI</a>
+              </li>
+            @endauth
+            @guest
+              <li class="nav-item">
+                <a class="nav-link {{ ($activeMenu ?? '') === 'corsi' ? 'active' : '' }}" aria-current="page" href="/guest/corsi">CORSI</a>
+              </li>
+            @endguest
+            @auth
+              <li class="nav-item">
+                <a class="{{ request()->is('corsi') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="/corsi">CORSI</a>
+              </li>
+            @endauth
             @role('admin')
                 <li class="nav-item">
                 <a class="{{ request()->is('admin') ? 'active nav-link' : 'nav-link' }}" aria-current="page" href="{{ route('admin.users.index') }}">ADMIN</a>

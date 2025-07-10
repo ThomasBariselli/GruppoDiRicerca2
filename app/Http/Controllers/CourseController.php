@@ -35,7 +35,7 @@ class CourseController extends Controller
         if($existsName){
 
             throw ValidationException::withMessages([
-                'title' => 'Questo progetto è già presente'
+                'name' => 'Questo corso è già presente'
             ]);
         }
         if(!$existsEmail){
