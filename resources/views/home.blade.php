@@ -26,6 +26,25 @@
               Dal 2010 collaboriamo con università, centri di ricerca e aziende per affrontare sfide scientifiche complesse e generare impatto reale attraverso la conoscenza.</p>
           </div>
         </div>
+        @if(auth()->guest())
+        <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/guest/progetti'">
+          <img src="progetti.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">PROGETTI</h5>
+            <p class="card-text">Soluzioni concrete per problemi reali.
+              Dalla teoria alla pratica: sviluppiamo progetti che uniscono competenze scientifiche, tecniche e creative per affrontare le sfide del futuro.</p>
+          </div>
+        </div>
+        @elseif(auth()->user()->can('view-project'))
+        <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/auth/progetti'">
+          <img src="progetti.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">PROGETTI</h5>
+            <p class="card-text">Soluzioni concrete per problemi reali.
+              Dalla teoria alla pratica: sviluppiamo progetti che uniscono competenze scientifiche, tecniche e creative per affrontare le sfide del futuro.</p>
+          </div>
+        </div>
+        @else
         <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/progetti'">
           <img src="progetti.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -34,6 +53,26 @@
               Dalla teoria alla pratica: sviluppiamo progetti che uniscono competenze scientifiche, tecniche e creative per affrontare le sfide del futuro.</p>
           </div>
         </div>
+        @endif
+        @if(auth()->guest())
+        <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/guest/corsi'">
+          <img src="corsi.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">CORSI</h5>
+            <p class="card-text">Soluzioni concrete per problemi reali.
+              Dalla teoria alla pratica: sviluppiamo progetti che uniscono competenze scientifiche, tecniche e creative per affrontare le sfide del futuro.</p>
+          </div>
+        </div>
+        @elseif(auth()->user()->can('view-course'))
+        <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/auth/corsi'">
+          <img src="corsi.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">CORSI</h5>
+            <p class="card-text">Soluzioni concrete per problemi reali.
+              Dalla teoria alla pratica: sviluppiamo progetti che uniscono competenze scientifiche, tecniche e creative per affrontare le sfide del futuro.</p>
+          </div>
+        </div>
+        @else
         <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/corsi'">
           <img src="corsi.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -42,13 +81,35 @@
               Dalla teoria alla pratica: sviluppiamo progetti che uniscono competenze scientifiche, tecniche e creative per affrontare le sfide del futuro.</p>
           </div>
         </div>
-        <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/pubblicazioni'">
-          <img src="pubblicazioni.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">PUBBLICAZIONI</h5>
-            <p class="card-text">Condividiamo la nostra conoscenza con il mondo.
-              Le nostre pubblicazioni riflettono l’impegno per l’eccellenza scientifica e la diffusione dei risultati in ambito accademico e industriale.</p>
-          </div>
-        </div>
+        @endif
+        @if(auth()->guest())
+              <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/guest/pubblicazioni'">
+              <img src="pubblicazioni.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">PUBBLICAZIONI</h5>
+                  <p class="card-text">Condividiamo la nostra conoscenza con il mondo.
+                    Le nostre pubblicazioni riflettono l’impegno per l’eccellenza scientifica e la diffusione dei risultati in ambito accademico e industriale.</p>
+                </div>
+              </div>
+            @elseif(auth()->user()->can('view-publication'))
+              <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/auth/pubblicazioni'">
+              <img src="pubblicazioni.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">PUBBLICAZIONI</h5>
+                  <p class="card-text">Condividiamo la nostra conoscenza con il mondo.
+                    Le nostre pubblicazioni riflettono l’impegno per l’eccellenza scientifica e la diffusione dei risultati in ambito accademico e industriale.</p>
+                </div>
+              </div>
+            @else
+              <div class="card text-bg-secondary mb-3" style="max-width: 18rem;" role="button" onclick="location.href='/pubblicazioni'">
+              <img src="pubblicazioni.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">PUBBLICAZIONI</h5>
+                  <p class="card-text">Condividiamo la nostra conoscenza con il mondo.
+                    Le nostre pubblicazioni riflettono l’impegno per l’eccellenza scientifica e la diffusione dei risultati in ambito accademico e industriale.</p>
+                </div>
+              </div>
+          @endif
+        
       </div>
     </div>
